@@ -18,7 +18,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'url_shortener_app.apps.UrlShortenerAppConfig'
+    'url_shortener_app.apps.UrlShortenerAppConfig',
+    'domain.apps.DomainConfig'
 ]
 
 MIDDLEWARE = [
