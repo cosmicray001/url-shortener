@@ -1,0 +1,9 @@
+.btn-primary-custom {
+    color: #fff;
+    background-color: #28c98b;
+    border-color: #28c98b;
+}
+#main-url-error{
+    color: red;
+    font-size: 12px;
+}

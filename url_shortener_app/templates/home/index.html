@@ -1,1 +1,53 @@
-<p>Hello</p>
+{% extends "home/main.html" %}
+{% load static %}
+{% block title %}
+    <title>Home</title>
+{% endblock %}
+{% block css %}
+    <link rel="stylesheet" href="{% static 'css/index.css' %}">
+{% endblock %}
+
+{% block body_block %}
+    <div class="row">
+        <div class="col-md-6 col-lg-6 col-sm-12">
+            <div class="card mt-5" style="height: 30vh; width: 30vw">
+                <div class="card-body p-4">
+                    <form id="url-form" method="post" action="{{ request.url }}">
+                        {%  csrf_token %}
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="form-group">
+                                    <label for="main-url"> Enter a long URL to make a ShortURL</label>
+                                    <input class="form-control form-control-lg" name="main_url" id="main-url" type="text" autocomplete="off"/>
+                                </div>
+                            </div>
+                            <div class="d-grid gap-2 mt-3">
+                                <button class="btn btn-primary-custom" type="submit">Shorten!!!</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 col-lg-6 col-sm-12">
+            <div class="card mt-5" style="height: 75vh; width: 30vw">
+                <div class="card-body p-4">
+                    <h3 class="text-center">ABOUT US</h3>
+                    <hr>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+{% block script_block %}
+    <script>
+        $( "#url-form" ).validate({
+            rules: {
+                main_url: {
+                    required: true,
+                    url: true
+                }
+            }
+        });
+    </script>
+{% endblock %}
