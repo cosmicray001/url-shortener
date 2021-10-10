@@ -49,3 +49,4 @@ git push origin branch-name
 ![banner](./dev_cycle.png)   
 <!--       END OF README           END OF README         END OF README         END OF README          END OF README           END OF README           END OF README      -->
 
+Copyright
