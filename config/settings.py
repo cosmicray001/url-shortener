@@ -1,9 +1,12 @@
+import os
+
 import environ
 from pathlib import Path
 
 env = environ.Env()
 
 BASE_DIR = Path(__file__).resolve().parent.parent
+env.read_env(env_file=os.path.join(BASE_DIR, '.env'))  # '.env' is the environment file
 SECRET_KEY = env.str('SECRET_KEY')
 
 DEBUG = env.bool('DEBUG', True)
