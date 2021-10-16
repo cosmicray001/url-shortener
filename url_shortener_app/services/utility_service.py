@@ -41,9 +41,10 @@ def create_short_url(main_url, original_md5_hash):
     for short_url_try in range(settings.SHORT_URL_TRY):
         new_md5_hash = string_to_md5_hash(main_url+str(datetime.now()))
         short_url = encode.base62_encode(new_md5_hash)
-        url_bank_queryset = UrlBank.objects.filter(actual_url_shortened=short_url).first()
+        url_bank_queryset = UrlBank.objects.filter(actual_url_shortened=short_url).exists()
         if not url_bank_queryset:
-            short_url_create = UrlBank.objects.create(actual_url=main_url, md_five_hash=original_md5_hash,
-                                                      actual_url_shortened=short_url)
+            UrlBank.objects.create(
+                actual_url=main_url, md_five_hash=original_md5_hash,
+                actual_url_shortened=short_url)
             return short_url
     return None
