@@ -1,3 +1,4 @@
+import logging
 import requests
 import hashlib
 from datetime import datetime
@@ -6,6 +7,8 @@ from django.conf import settings
 from domain.models.url_bank import UrlBank
 from url_shortener_app.services.encode import Encode
 
+logger = logging.getLogger(__name__)
+
 
 def live_url_check(url):
     """
@@ -13,9 +16,13 @@ def live_url_check(url):
     :param url: a Uniform Resource Locator(URL) of a website
     :return: True or False
     """
-    r = requests.head(url)
-    # print(r.status_code)
-    return r.status_code == 200
+    try:
+        r = requests.head(url)
+        # print(r.status_code)
+        return r.status_code == 200
+    except Exception as E:
+        logger.error(str(E), exc_info=True)
+    return False
 
 
 def string_to_md5_hash(string_to_hash):
