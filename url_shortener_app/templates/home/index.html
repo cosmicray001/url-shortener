@@ -4,13 +4,16 @@
     <title>Home</title>
 {% endblock %}
 {% block css %}
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{% static 'css/index.css' %}">
 {% endblock %}
 
 {% block body_block %}
     <div class="row">
         <div class="col-md-6 col-lg-6 col-sm-12">
-            <div class="card mt-5" style="height: 30vh; width: 30vw">
+            <div class="card mt-5" style="height: 50vh; width: 30vw">
                 <div class="card-body p-4">
                     <form id="url-form" method="post" action="{{ request.url }}">
                         {%  csrf_token %}
@@ -26,6 +29,21 @@
                             </div>
                         </div>
                     </form>
+                    {%  if status == 'success' %}
+                        <div class="row mt-2">
+                            <div class="col-lg-12">
+                                <input class="form-control form-control-lg" id="result" type="text" autocomplete="off" readonly value="{{ shorten_url }}"/>
+                            </div>
+                            <div class="col-lg-6 col-sm-12 d-grid gap-2 mt-2">
+                                <button class="btn btn-primary" id="copy-url">
+                                    <i class="fas fa-copy m-2"></i>Copy</button>
+                            </div>
+                            <div class="col-lg-6 col-sm-12 d-grid gap-2 mt-2">
+                                <button class="btn btn-primary" id="redirect">
+                                    <i class="fas fa-share-square m-2"></i> Redirect</button>
+                            </div>
+                        </div>
+                    {% endif %}
                 </div>
             </div>
         </div>
@@ -40,14 +58,5 @@
     </div>
 {% endblock %}
 {% block script_block %}
-    <script>
-        $( "#url-form" ).validate({
-            rules: {
-                main_url: {
-                    required: true,
-                    url: true
-                }
-            }
-        });
-    </script>
+    <script src="{% static 'js/url_shortner/index.js' %}"></script>
 {% endblock %}
