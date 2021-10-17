@@ -1,4 +1,6 @@
 import logging
+from datetime import datetime
+from django.http import HttpResponseRedirect
 from django.shortcuts import render
 from django.views import View
 from django.conf import settings
@@ -34,3 +36,25 @@ class HomePage(View):
         except Exception as ex:
             logger.error(str(ex), exc_info=True)
         return render(request, HOMEPAGE_TEMPLATE, {'message': 'Invalid URL', 'status': 'error'})
+
+
+class URLDecode(View):
+
+    def get(self, request, short_url):
+        try:
+            url_bank_queryset = UrlBank.objects.filter(actual_url_shortened=short_url,
+                                                       expiration_date__gte=datetime.now()).exists()
+            if url_bank_queryset:
+                actual_url_queryset = UrlBank.objects.filter(
+                    actual_url_shortened=short_url).values_list('actual_url', flat=True).first()
+                url_path = actual_url_queryset
+                return HttpResponseRedirect(url_path)
+            else:
+                expired_url_queryset = UrlBank.objects.filter(actual_url_shortened=short_url,
+                                                              expiration_date__lt=datetime.now()).exists()
+                if expired_url_queryset:
+                    UrlBank.objects.filter(actual_url_shortened=short_url).delete()
+                return render(request, {'message': 'URL not found!'})
+        except Exception as ex:
+            logger.error(str(ex), exc_info=True)
+        return render(request, HOMEPAGE_TEMPLATE, {})
