@@ -88,5 +88,5 @@ STATIC_URL = '/static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-SITE_DOMAIN_NAME = env.str('SITE_DOMAIN_NAME', 'http://127.0.0.1:8001/')
+SITE_DOMAIN_NAME = env.str('SITE_DOMAIN_NAME', 'http://127.0.0.1:8000/')
 SHORT_URL_TRY = env.int('SHORT_URL_TRY', 5)
