@@ -2,7 +2,11 @@
 _Django based URL Shortener web application_
 
 <div align="center">
-  <img src="./flow_chart.png" alt="Flow chart">
+  <img src="./encode.png" alt="encode fig">
+</div>
+<br>
+<div align="center">
+  <img src="./decode.png" alt="decode fig">
 </div>
 <br>
 
