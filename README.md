@@ -30,9 +30,28 @@ git checkout -b branch-name
 python -m venv env       # create virtual env
 source env/bin/activate  # active env
 pip install -r requirements.txt # install packages
-python manage.py runserver # runserver
+python manage.py migrate #migrate database
 ```
-Open browser at --> http://127.0.0.1:8000/
+* Setup environment variable
+```markdown
+create an environment file named .env into the project directory
+```
+* Sample .env file
+```markdown
+SECRET_KEY=<<secret key>>
+DEBUG=<<TRUE/false>>
+DATABASE_URL=<<database rul e.g. sqlite:///db.sqlite3 >>
+SITE_DOMAIN_NAME=<<redirect url e.g. http://127.0.0.1:8800/.>>
+SHORT_URL_TRY=10
+```
+
+* Run Server
+
+```markdown
+python manage.py runserver 0.0.0.0:8800
+```
+
+Open browser at --> http://127.0.0.1:8800/
 * Make change in the repository with the new branch.
 * push the changes.
 ```markdown
