@@ -19,7 +19,7 @@ def live_url_check(url):
     try:
         r = requests.head(url)
         # print(r.status_code)
-        return r.status_code == 200
+        return r.status_code == 200 or r.status_code == 404
     except Exception as E:
         logger.error(str(E), exc_info=True)
     return False
