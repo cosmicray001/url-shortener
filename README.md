@@ -69,6 +69,9 @@ git push origin branch-name
 * Also Make Sure you comment your code wherever necessary.
 * Give PR to the dev branch 
 
+### Resource
+* TinyURL System Design --> https://youtu.be/YN7hCvBOFxk
+
 ![banner](./dev_cycle.png)   
 <!--       END OF README           END OF README         END OF README         END OF README          END OF README           END OF README           END OF README      -->
 
